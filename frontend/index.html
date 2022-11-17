@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DollMakerGUI</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="dollsModal" id="modal">
+            <div id="modalContent">
+                <ul id="dollsUl">
+                    <li class="modalCard" id="deleteAllDollsCard"><span>Delete all dolls</span></li>
+                    <li class="modalCard" id="createNewDollCard"><span>Create A New Doll</span></li>
+                </ul>
+                <button id="saveDollsBtn">Save Dolls</button>
+            </div>
+        </div>
+        <div id="body">
+            <div class="canvas">
+                <canvas id="canvas"></canvas>
+                <button id="exportCanvasBtn">Save As image</button>
+                <button id="switchDollBtn">Switch Doll</button>
+                <button id="toggleMultiselectBtn">Toggle Multiselect</button>
+                <div class="options">
+                    <ul id="optionsUl"></ul>
+                </div>
+                <div class="categories">
+                    <a>Hair</a>
+                    <a>Dress</a>
+                    <a>Face</a>
+                    <a>Shoes</a>
+                    <a>Accessory</a>
+                </div>
+            </div>
+
+            <div id="appliedOptions">
+                <ol id="appliedOptionsOl"></ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="./src/main.js" type="module"></script>
+
+    <script src="./src/canvas.js"></script>
+    <script id="DragDropTouch" src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"></script>
+</body>
+
+</html>
