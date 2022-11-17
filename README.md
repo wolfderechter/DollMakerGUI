@@ -2,6 +2,11 @@
 
 This is the GUI repository of my [DollMaker JS application](https://github.com/wolfderechter/DollMaker).
 
+## Note
+
+Currently only the `wails dev` build works because Wails can't access images not explicitly imported :(
+
+I'll fix this in the future, hopefully.
 
 ## About
 

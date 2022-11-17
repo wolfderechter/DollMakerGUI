@@ -114,7 +114,8 @@ body {
 
 .categories .clickedCategory {
     background-color: pink;
-    color: white;
+    color: #222222
+        /* color: white; */
 }
 
 .options::-webkit-scrollbar-thumb {

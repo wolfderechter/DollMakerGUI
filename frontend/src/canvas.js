@@ -29,7 +29,6 @@ var currentDoll;
 //   .then(text => console.log(text.split("\r\n")))
 //   .catch(err => console.log(err))
 
-// while()
 class Doll {
   constructor() {
     this.options = [];
@@ -137,8 +136,14 @@ class Option {
 }
 
 //Load old data or start fresh
+localStorage.removeItem("dolls");
 if (localStorage.getItem("dolls")) {
   dollsJson = JSON.parse(localStorage.getItem("dolls"));
+
+  // Something probably went wrong, so fresh start
+  if (dollsJson.length < 1) {
+    localStorage.removeItem("dollls");
+  }
 
   dollsJson.forEach((d) => {
     rebuiltDoll = new Doll();
@@ -182,7 +187,7 @@ window.addEventListener("resize", () => {
 
   canvas.height = "500";
   canvas.width = "400";
-  console.log(window.innerWidth)
+
   currentDoll?.draw();
 });
 
@@ -209,14 +214,23 @@ categories.forEach((cat, index) => {
     // this will empty my options so previous loaded options will be removed
     options.innerHTML = "";
 
+    // A switch case could work here => disadvantage is that there will be no dynamically building of images, all images are hardcoded this way
+    // switch (currentCategory) {
+    //   case 'Hair':
+    //   // build img
+    // }
+
     for (let index = 0; index < 10; index++) {
       var img = new Image();
       img.src = `./src/assets/images/${currentCategory.toLowerCase()}/${index}.png`;
+
 
       img.onload = () => {
         var option = document.createElement("li");
         var image = document.createElement("img");
         image.src = `./src/assets/images/${currentCategory.toLowerCase()}/${index}.png`;
+
+
 
         if (currentDoll.hasOption(currentCategory, image)) {
           option.classList.add("clickedOption");
@@ -321,7 +335,7 @@ toggleMultiselectBtn.addEventListener("click", () => {
 
     //clear all the previous selected elements
     //remove all the previous options in the ui
-    const optionsArray = [...options.children];
+    var optionsArray = [...options.children];
     optionsArray.forEach((option) => {
       option.classList.remove("clickedOption");
     });
@@ -373,7 +387,7 @@ function loadDolls() {
       currentDoll.draw();
 
       //clear the selected options in the ui and select the options in the currentdoll
-      optionsArray = [...options.children];
+      var optionsArray = [...options.children];
       optionsArray.forEach((opt) => {
         if (currentDoll.hasOption(currentCategory, opt.firstChild)) {
           opt.classList.add("clickedOption");
@@ -417,7 +431,7 @@ createNewDollCard.addEventListener("click", () => {
   currentDoll.draw();
 
   //clear the selected options in the ui
-  optionsArray = [...options.children];
+  var optionsArray = [...options.children];
   optionsArray.forEach((opt) => {
     opt.classList.remove("clickedOption");
   });
